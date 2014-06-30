@@ -1,9 +1,16 @@
 class MyStack
+  def initialize
+    @size = 0
+  end
   def empty?
-    true
+    @size == 0 ? true : false
   end
 
   def size
-    0
+    @size
+  end
+
+  def push(item)
+    @size += 1
   end
 end
