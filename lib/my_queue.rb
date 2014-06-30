@@ -1,13 +1,17 @@
 class MyQueue
   def initialize
-
+    @size = 0
   end
 
   def empty?
-    false
+    @size == 0 ? true : false
   end
 
   def size
-    0
+    @size
+  end
+
+  def enqueue(item)
+    @size += 1
   end
 end
