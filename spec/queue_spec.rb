@@ -28,4 +28,17 @@ describe MyQueue do
     expect(queue.dequeue).to eq "one"
     expect(queue.dequeue).to eq nil
   end
+
+  it "returns each element in the queue, fifo style" do
+    queue = MyQueue.new
+    queue.enqueue("one")
+    queue.enqueue("two")
+    queue.enqueue("three")
+    actual = []
+    queue.each do |item|
+      actual << item
+    end
+    expected = ["one", "two", "three"]
+    expect(actual).to eq expected
+  end
 end

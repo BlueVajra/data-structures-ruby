@@ -18,4 +18,10 @@ class MyQueue
   def dequeue
     @the_queue.shift
   end
+
+  def each
+    @the_queue.each do |item|
+      yield item
+    end
+  end
 end
