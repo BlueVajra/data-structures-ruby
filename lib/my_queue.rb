@@ -1,17 +1,21 @@
 class MyQueue
   def initialize
-    @size = 0
+    @the_queue = []
   end
 
   def empty?
-    @size == 0 ? true : false
+    size == 0 ? true : false
   end
 
   def size
-    @size
+    @the_queue.count
   end
 
   def enqueue(item)
-    @size += 1
+    @the_queue << item
+  end
+
+  def dequeue
+    @the_queue.shift
   end
 end
