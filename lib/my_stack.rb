@@ -1,5 +1,6 @@
 class Node
   attr_accessor :name, :next
+
   def initialize(name, next_node)
     @name = name
     @next = next_node
@@ -51,6 +52,18 @@ class MyStack
       result
     else
       nil
+    end
+  end
+
+  def each
+    new_count = @size-1
+    while new_count >= 0
+      node = @head
+      new_count.times do |count|
+        node = node.next
+      end
+      yield node.name
+      new_count -= 1
     end
   end
 end

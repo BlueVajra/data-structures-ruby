@@ -22,4 +22,17 @@ describe MyStack do
     expect(stack.pop).to eq "one"
     expect(stack.size).to eq 0
   end
+
+  it "iterates through the stack with each" do
+    stack = MyStack.new
+    stack.push("one")
+    stack.push("two")
+    stack.push("three")
+    expected = ["three", "two", "one"]
+    actual = []
+    stack.each do |item|
+      actual << item
+    end
+    expect(actual).to eq expected
+  end
 end
