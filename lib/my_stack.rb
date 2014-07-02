@@ -1,16 +1,17 @@
 class Node
-  attr_accessor :value, :next
+  attr_accessor :value, :below
 
-  def initialize(value, next_node)
+  def initialize(value)
     @value = value
-    @next = next_node
+    @below = nil
   end
 end
 
 class MyStack
   def initialize
     @size = 0
-    @head = nil
+    @bottom = nil
+    @top = nil
   end
 
   def empty?
@@ -23,47 +24,29 @@ class MyStack
 
   def push(item)
     @size += 1
-    if @head == nil
-      @head = Node.new(item, nil)
+    node = Node.new(item)
+    if @bottom == nil
+      @bottom , @top = node, node
     else
-      node = @head
-      until node.next == nil
-        node = node.next
-      end
-      node.next = Node.new(item, nil)
+      node.below = @top
+      @top = node
     end
   end
 
   def pop
-    if @head != nil
-      node = @head
-      prev_node = nil
-      until node.next == nil
-        prev_node = node
-        node = node.next
-      end
-      result = node.value
-      if @head.next != nil
-        prev_node.next = nil
-      else
-        @head = nil
-      end
+    if size != 0
       @size -= 1
-      result
-    else
-      nil
+      popped_top = @top.value
+      @top = @top.below
+      popped_top
     end
   end
 
-  def each
-    new_count = @size-1
-    while new_count >= 0
-      node = @head
-      new_count.times do |count|
-        node = node.next
-      end
-      yield node.value
-      new_count -= 1
+  def each(&block)
+    current_node = @top
+    while !current_node.nil?
+      yield current_node.value
+      current_node = current_node.below
     end
   end
 end
