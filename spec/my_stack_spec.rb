@@ -21,6 +21,7 @@ describe MyStack do
     expect(stack.size).to eq 1
     expect(stack.pop).to eq "one"
     expect(stack.size).to eq 0
+    expect(stack.pop).to eq nil
   end
 
   it "iterates through the stack with each" do
