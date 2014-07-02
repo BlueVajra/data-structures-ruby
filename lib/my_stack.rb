@@ -1,21 +1,20 @@
 class Node
   attr_accessor :value, :below
 
-  def initialize(value)
+  def initialize(value, below = nil)
     @value = value
-    @below = nil
+    @below = below
   end
 end
 
 class MyStack
   def initialize
     @size = 0
-    @bottom = nil
     @top = nil
   end
 
   def empty?
-    @size == 0 ? true : false
+    @size == 0
   end
 
   def size
@@ -24,17 +23,11 @@ class MyStack
 
   def push(item)
     @size += 1
-    node = Node.new(item)
-    if @bottom == nil
-      @bottom , @top = node, node
-    else
-      node.below = @top
-      @top = node
-    end
+    @top = Node.new(item, @top)
   end
 
   def pop
-    if size != 0
+    if @top != nil
       @size -= 1
       popped_top = @top.value
       @top = @top.below
