@@ -1,4 +1,4 @@
-class Node
+class StackNode
   attr_accessor :value, :below
 
   def initialize(value, below = nil)
@@ -23,7 +23,7 @@ class MyStack
 
   def push(item)
     @size += 1
-    @top = Node.new(item, @top)
+    @top = StackNode.new(item, @top)
   end
 
   def pop
