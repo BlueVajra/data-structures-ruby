@@ -35,7 +35,7 @@ class MyStack
     end
   end
 
-  def each(&block)
+  def each
     current_node = @top
     while !current_node.nil?
       yield current_node.value
